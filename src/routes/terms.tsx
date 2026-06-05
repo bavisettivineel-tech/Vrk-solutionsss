@@ -1,11 +1,27 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/Shared";
 
+const SITE_URL = "https://vrksolutions.in";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "Terms of Service", item: `${SITE_URL}/terms` },
+  ],
+};
+
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
       { title: "Terms of Service — VRK Solutions" },
-      { name: "description", content: "The terms governing the use of VRK Solutions services and website." },
+      { name: "description", content: "Read VRK Solutions' Terms of Service governing the use of our website and digital services including website development, app development, SEO and digital marketing." },
+      { name: "robots", content: "noindex, follow" },
+    ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/terms` }],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(breadcrumbSchema) },
     ],
   }),
   component: TermsPage,

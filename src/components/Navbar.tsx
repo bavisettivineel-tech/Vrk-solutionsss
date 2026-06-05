@@ -41,13 +41,25 @@ export function Navbar() {
       className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
         scrolled ? "bg-[var(--brand-deep)] shadow-lg" : "bg-transparent"
       }`}
+      role="banner"
     >
+      {/* Skip to main content for accessibility & SEO */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:rounded-md focus:bg-[var(--brand-blue)] focus:text-white focus:font-semibold"
+      >
+        Skip to main content
+      </a>
       <div className="container-x flex items-center justify-between h-16 md:h-20">
-        <Link to="/" className="text-white font-display font-extrabold text-xl md:text-2xl tracking-tight">
+        <Link
+          to="/"
+          aria-label="VRK Solutions — Go to homepage"
+          className="text-white font-display font-extrabold text-xl md:text-2xl tracking-tight"
+        >
           VRK Solutions
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
           {navLinks.slice(0, 2).map((l) => (
             <Link
               key={l.to}
@@ -66,20 +78,23 @@ export function Navbar() {
           >
             <Link
               to="/services"
+              aria-expanded={servicesOpen}
+              aria-haspopup="true"
               className="px-4 py-2 text-sm font-medium text-white/90 hover:text-white transition-colors inline-flex items-center gap-1"
             >
-              Services <ChevronDown className="h-4 w-4" />
+              Services <ChevronDown className="h-4 w-4" aria-hidden="true" />
             </Link>
             {servicesOpen && (
-              <div className="absolute top-full left-0 pt-2 w-72">
+              <div className="absolute top-full left-0 pt-2 w-72" role="menu" aria-label="Services submenu">
                 <div className="bg-[var(--card)] rounded-lg shadow-xl ring-1 ring-[var(--border)] overflow-hidden">
                   {serviceLinks.map((s) => (
                     <Link
                       key={s.to}
                       to={s.to}
+                      role="menuitem"
                       className="flex items-center gap-3 px-4 py-3 text-sm text-[var(--brand-text)] hover:bg-[var(--brand-bg-alt)] hover:text-[var(--brand-accent)] transition-colors"
                     >
-                      <s.icon className="h-4 w-4 text-[var(--brand-accent)]" />
+                      <s.icon className="h-4 w-4 text-[var(--brand-accent)]" aria-hidden="true" />
                       {s.label}
                     </Link>
                   ))}
@@ -101,6 +116,8 @@ export function Navbar() {
 
         <Link
           to="/contact"
+          id="cta-get-quote"
+          aria-label="Get a free quote from VRK Solutions"
           className="hidden lg:inline-flex items-center px-5 py-2.5 rounded-md bg-[var(--brand-blue)] text-white font-semibold text-sm hover:shadow-[0_0_20px_rgba(37,99,235,0.6)] transition-all"
         >
           Get a Free Quote
