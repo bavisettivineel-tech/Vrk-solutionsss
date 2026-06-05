@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Disallow admin or private pages (none currently)
+# Disallow: /
+
+Sitemap: https://vrksolutions.in/sitemap.xml
