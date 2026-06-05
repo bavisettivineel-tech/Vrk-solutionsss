@@ -16,6 +16,9 @@ dist-ssr
 .nitro
 *.local
 
+# Vite internal compiled config cache — never commit these
+vite.config.timestamp_*.js
+
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars
